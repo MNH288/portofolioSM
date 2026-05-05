@@ -109,12 +109,36 @@
             transition: 0.4s;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             display: block;
+            cursor: zoom-in;
         }
 
         .grid img:hover {
             transform: scale(1.08);
             box-shadow: 0 8px 25px rgba(255, 0, 238, 0.3);
             z-index: 1;
+        }
+
+        /* LIGHTBOX STYLE (FITUR KLIK FOTO) */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85%;
+            border: 3px solid white;
+            border-radius: 5px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
 
         /* CONTACT */
@@ -191,6 +215,30 @@
         <p>WhatsApp: 0895410709467</p>
         <p>Email: sultanmudovisual@gmail.com</p>
     </section>
+
+    <!-- ELEMEN LIGHTBOX -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="">
+    </div>
+
+    <!-- JAVASCRIPT UNTUK KLIK -->
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        // Fungsi untuk buka foto
+        document.querySelectorAll('.grid img').forEach(image => {
+            image.onclick = () => {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = image.src;
+            };
+        });
+
+        // Fungsi untuk tutup foto
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
